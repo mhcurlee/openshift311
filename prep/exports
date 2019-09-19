@@ -1,0 +1,2 @@
+/pub/registry           *(rw,all_squash)
+/pub/metrics           *(rw,all_squash)

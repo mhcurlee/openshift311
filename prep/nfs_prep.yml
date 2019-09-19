@@ -1,0 +1,28 @@
+---
+
+- name: Setup NFS server for OpenShift  
+  hosts: nfsserver 
+  tasks: 
+
+
+    - name: setup NFS registry dir 
+      file:
+        path: /pub/registry
+        state: directory
+
+    - name: setup NFS metrics dir 
+      file:
+        path: /pub/metrics
+        state: directory
+
+    - name: copy exports file
+      copy:
+       src: exports
+       dest: /etc/exports
+
+    - name: enable nfs services
+      service:
+        name: nfs
+        state: started
+        enabled: true
+
