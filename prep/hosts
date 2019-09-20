@@ -1,5 +1,17 @@
 [ocp]
+ip-172-30-0-158.ec2.internal
+ip-172-30-0-5.ec2.internal
+ip-172-30-0-251.ec2.internal
+
+ip-172-30-0-89.ec2.internal
+ip-172-30-0-168.ec2.internal
+ip-172-30-0-123.ec2.internal
+
+ip-172-30-0-69.ec2.internal
+ip-172-30-0-96.ec2.internal
+ip-172-30-0-117.ec2.internal
+
 
 [nfs]
-
+ip-172-30-0-190.ec2.internal
 
