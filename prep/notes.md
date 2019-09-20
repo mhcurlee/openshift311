@@ -1,6 +1,14 @@
 # Notes
 
+### Setup Ansible host 
+
 Copy SSH key to Ansible node
+
+sudo yum install -y centos-release-ansible26.noarch
+sudo yum install -y ansible git
+git clone https://github.com/mhcurlee/openshift311_classroom.git
+
+
 
 ### Required servers
 
