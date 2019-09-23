@@ -9,11 +9,15 @@
       file:
         path: /pub/registry
         state: directory
+        owner: nfsnobody
+        group: nfsnobody
 
     - name: setup NFS metrics dir 
       file:
         path: /pub/metrics
         state: directory
+        owner: nfsnobody
+        group: nfsnobody
 
     - name: copy exports file
       copy:
