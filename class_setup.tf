@@ -25,6 +25,18 @@ variable "subnet_name" {
   default = "subnet-d52b2dfd"
 }
 
+variable "r53_zone_id" {
+description = "Route53 zone id"
+default = "Z1EEQ05I8FZVXC"
+
+}
+
+variable "r53_domain" {
+description = "Route53 domain name"
+default = "gocurlee.com"
+
+}
+
 
 # create VMs
 
@@ -37,6 +49,7 @@ resource "aws_instance" "nfs" {
   
 
   root_block_device {
+    volume_size = "40"  
     delete_on_termination = "true"
   }
 
@@ -339,6 +352,37 @@ resource "aws_instance" "node03" {
 
 
 }
+
+
+#  Create DNS records
+resource "aws_route53_record" "nfs" {
+  zone_id = "${var.r53_zone_id}"
+  name    = "nfs.${var.r53_domain}"
+  type    = "A"
+  ttl = "60"
+  records = [ "${aws_instance.nfs.private_ip}"]
+  
+  }
+
+resource "aws_route53_record" "master" {
+  zone_id = "${var.r53_zone_id}"
+  name    = "master.${var.r53_domain}"
+  type    = "A"
+  ttl = "60"
+  records = [ "${aws_instance.lb.private_ip}"]
+  
+  }
+
+
+resource "aws_route53_record" "wildcard" {
+  zone_id = "${var.r53_zone_id}"
+  name    = "*.apps.${var.r53_domain}"
+  type    = "A"
+  ttl = "60"
+  records = [ "${aws_instance.infra01.public_ip}", "${aws_instance.infra02.public_ip}", "${aws_instance.infra03.public_ip}"]
+  
+  }
+
 
 
 # Output private DNS info

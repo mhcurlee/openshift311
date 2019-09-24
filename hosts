@@ -2,29 +2,29 @@
 
 [masters]
 
-ip-172-30-0-158.ec2.internal
-ip-172-30-0-5.ec2.internal
-ip-172-30-0-251.ec2.internal
+ip-172-30-4-158.ec2.internal
+ip-172-30-4-5.ec2.internal
+ip-172-30-4-251.ec2.internal
 
 [etcd]
 
-ip-172-30-0-158.ec2.internal
-ip-172-30-0-5.ec2.internal
-ip-172-30-0-251.ec2.internal
+ip-172-30-4-158.ec2.internal
+ip-172-30-4-5.ec2.internal
+ip-172-30-4-251.ec2.internal
 
 [nodes]
 
-ip-172-30-0-158.ec2.internal openshift_node_group_name="node-config-master"
-ip-172-30-0-5.ec2.internal openshift_node_group_name="node-config-master"
-ip-172-30-0-251.ec2.internal openshift_node_group_name="node-config-master"
+ip-172-30-4-158.ec2.internal openshift_node_group_name="node-config-master"
+ip-172-30-4-5.ec2.internal openshift_node_group_name="node-config-master"
+ip-172-30-4-251.ec2.internal openshift_node_group_name="node-config-master"
 
-ip-172-30-0-89.ec2.internal openshift_node_group_name="node-config-infra"
-ip-172-30-0-168.ec2.internal openshift_node_group_name="node-config-infra"
-ip-172-30-0-123.ec2.internal openshift_node_group_name="node-config-infra"
+ip-172-30-4-89.ec2.internal openshift_node_group_name="node-config-infra"
+ip-172-30-4-168.ec2.internal openshift_node_group_name="node-config-infra"
+ip-172-30-4-123.ec2.internal openshift_node_group_name="node-config-infra"
 
-ip-172-30-0-69.ec2.internal openshift_node_group_name="node-config-compute"
-ip-172-30-0-96.ec2.internal openshift_node_group_name="node-config-compute"
-ip-172-30-0-117.ec2.internal openshift_node_group_name="node-config-compute"
+ip-172-30-4-69.ec2.internal openshift_node_group_name="node-config-compute"
+ip-172-30-4-96.ec2.internal openshift_node_group_name="node-config-compute"
+ip-172-30-4-117.ec2.internal openshift_node_group_name="node-config-compute"
 
 
 
@@ -98,7 +98,7 @@ debug_level=2
 
 openshift_hosted_registry_storage_kind=nfs
 openshift_hosted_registry_storage_access_modes=['ReadWriteMany']
-openshift_hosted_registry_storage_host=ip-172-30-0-190.ec2.internal
+openshift_hosted_registry_storage_host=nfs.gocurlee.com
 openshift_hosted_registry_storage_nfs_directory=/pub
 openshift_hosted_registry_storage_volume_name=registry
 openshift_hosted_registry_storage_volume_size=10Gi
