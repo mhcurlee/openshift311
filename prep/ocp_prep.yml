@@ -1,7 +1,7 @@
 ---
 
 - name: Prep for OpenShift install 
-  hosts: ip-172-30-0-123.ec2.internal 
+  hosts: ocp 
   tasks: 
 
 

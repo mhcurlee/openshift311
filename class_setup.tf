@@ -16,7 +16,7 @@ variable "ami_name" {
 }
 
 variable "sg_name" {
-  description = "Centos ami"
+  description = "Security Group name"
   default = ["sg-06e8b0b20f44cf322"]
 }
 
