@@ -429,7 +429,7 @@ ${aws_instance.master03.private_dns}
 [nodes]
 ${aws_instance.master01.private_dns} openshift_node_group_name="node-config-master"
 ${aws_instance.master02.private_dns} openshift_node_group_name="node-config-master"
-${aws_instance.master03.private_dns}openshift_node_group_name="node-config-master"
+${aws_instance.master03.private_dns} openshift_node_group_name="node-config-master"
 
 ${aws_instance.infra01.private_dns} openshift_node_group_name="node-config-infra"
 ${aws_instance.infra02.private_dns} openshift_node_group_name="node-config-infra"
