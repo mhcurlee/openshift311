@@ -26,12 +26,15 @@ ip-172-30-4-69.ec2.internal openshift_node_group_name="node-config-compute"
 ip-172-30-4-96.ec2.internal openshift_node_group_name="node-config-compute"
 ip-172-30-4-117.ec2.internal openshift_node_group_name="node-config-compute"
 
+[lb]
+ip-172-30-4-232.ec2.internal
 
 
 [OSEv3:children]
 masters
 nodes
 etcd
+lb
 
 [OSEv3:vars]
 
