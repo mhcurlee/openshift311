@@ -364,15 +364,23 @@ resource "aws_route53_record" "nfs" {
   
   }
 
-resource "aws_route53_record" "master" {
+resource "aws_route53_record" "master-local" {
   zone_id = "${var.r53_zone_id}"
-  name    = "master.${var.r53_domain}"
+  name    = "master-local.${var.r53_domain}"
   type    = "A"
   ttl = "60"
   records = [ "${aws_instance.lb.private_ip}"]
   
   }
 
+resource "aws_route53_record" "master" {
+  zone_id = "${var.r53_zone_id}"
+  name    = "master.${var.r53_domain}"
+  type    = "A"
+  ttl = "60"
+  records = [ "${aws_instance.lb.public_ip}"]
+  
+  }
 
 resource "aws_route53_record" "wildcard" {
   zone_id = "${var.r53_zone_id}"
