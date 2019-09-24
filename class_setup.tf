@@ -355,6 +355,16 @@ resource "aws_instance" "node03" {
 
 
 #  Create DNS records
+resource "aws_route53_record" "ansible" {
+  zone_id = "${var.r53_zone_id}"
+  name    = "ansible.${var.r53_domain}"
+  type    = "A"
+  ttl = "60"
+  records = [ "${aws_instance.ansible.public_ip}"]
+  
+  }
+
+
 resource "aws_route53_record" "nfs" {
   zone_id = "${var.r53_zone_id}"
   name    = "nfs.${var.r53_domain}"
@@ -372,6 +382,7 @@ resource "aws_route53_record" "master-local" {
   records = [ "${aws_instance.lb.private_ip}"]
   
   }
+
 
 resource "aws_route53_record" "master" {
   zone_id = "${var.r53_zone_id}"
@@ -397,41 +408,39 @@ resource "aws_route53_record" "wildcard" {
 
 
 output "master01" {
-  value = "${aws_instance.master01.private_dns}"
-}
-output "master02" {
-  value = "${aws_instance.master02.private_dns}"
-}
-output "master03" {
-  value = "${aws_instance.master03.private_dns}"
-}
-
-output "infra01" {
-  value = "${aws_instance.infra01.private_dns}"
-}
-output "infra02" {
-  value = "${aws_instance.infra02.private_dns}"
-}
-output "infra03" {
-  value = "${aws_instance.infra03.private_dns}"
-}
-
-output "node01" {
-  value = "${aws_instance.node01.private_dns}"
-}
-output "node02" {
-  value = "${aws_instance.node02.private_dns}"
-}
-output "node03" {
-  value = "${aws_instance.node03.private_dns}"
-}
-
-output "nfs" {
-  value = "${aws_instance.nfs.private_dns}"
-}
-
-output "lb" {
-  value = "${aws_instance.lb.private_dns}"
+  value = "${aws_instance.master01.public_dns}"
 }
 
 
+
+output "openshift_data" {
+value = <<EOT
+
+[masters]
+${aws_instance.master01.private_dns}
+${aws_instance.master02.private_dns}
+${aws_instance.master03.private_dns}
+
+[etcd]
+${aws_instance.master01.private_dns}
+${aws_instance.master02.private_dns}
+${aws_instance.master03.private_dns}
+
+[nodes]
+${aws_instance.master01.private_dns} openshift_node_group_name="node-config-master"
+${aws_instance.master02.private_dns} openshift_node_group_name="node-config-master"
+${aws_instance.master03.private_dns}openshift_node_group_name="node-config-master"
+
+${aws_instance.infra01.private_dns} openshift_node_group_name="node-config-infra"
+${aws_instance.infra02.private_dns} openshift_node_group_name="node-config-infra"
+${aws_instance.infra03.private_dns} openshift_node_group_name="node-config-infra"
+
+${aws_instance.node01.private_dns} openshift_node_group_name="node-config-compute"
+${aws_instance.node02.private_dns} openshift_node_group_name="node-config-compute"
+${aws_instance.node03.private_dns} openshift_node_group_name="node-config-compute"
+
+[lb]
+${aws_instance.lb.private_dns}
+
+EOT
+}
