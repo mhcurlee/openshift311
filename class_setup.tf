@@ -411,10 +411,32 @@ output "master01" {
   value = "${aws_instance.master01.public_dns}"
 }
 
+output "prep_data" {
+  value = <<EOT
 
+
+[ocp]
+${aws_instance.master01.private_dns}
+${aws_instance.master02.private_dns}
+${aws_instance.master03.private_dns}
+${aws_instance.infra01.private_dns}
+${aws_instance.infra02.private_dns}
+${aws_instance.infra03.private_dns}
+${aws_instance.node01.private_dns}
+${aws_instance.node02.private_dns}
+${aws_instance.node03.private_dns}
+
+[nfs]
+${aws_instance.nfs.private_dns}
+
+
+EOT
+
+}
 
 output "openshift_data" {
 value = <<EOT
+
 
 [masters]
 ${aws_instance.master01.private_dns}
